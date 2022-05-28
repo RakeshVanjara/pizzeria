@@ -13,8 +13,6 @@ class Pizzeria:
   bruschetta=0
   chocco_brownies=0
 
-
-
   def menu():
     food_menu="""
 1 large pizza = 10.99 AUD 
@@ -106,13 +104,23 @@ class Pizzeria:
       self.total_qty+=input_pasta
       self.pasta_amount+=pasta_amt
       self.bruschetta+=2
-      self.chocco_brownies+=2
+      #self.chocco_brownies+=2
       print("\t\t*** Congratulations !! get 2 bruschetta free ***\n")
-      print("\t\t*** Congratulations !! get 2 chocco brownies ice cream free ***\n")
+      #print("\t\t*** Congratulations !! get 2 chocco brownies ice cream free ***\n")
       print("\tYour pasta order amount is : ","{:.2f}".format(pasta_amt),"AUD\n")
+    else:
+      print("\nEnter invalid input...!")
+
+    #this if condition for only customer's who ordered 4 or mor pizza and also 4 or mor pasta.
+    if input_pizza>=4 and input_pasta>=4:
+      self.chocco_brownies+=2
+      print("\t\t*** Congratulations !! get 2 chocco brownies ice cream free ***\n")
+    
+    #increamented individual customer's amount by pasta_amt
     c_amount+=pasta_amt
     print("your billing amount is, ","{:.2f}".format(c_amount),"AUD.")
-  
+
+    #total_amt increamented by individual customer's amount
     self.total_amt+=c_amount
     print("\n\n-----> your Net order amount of the day is : ","{:.2f}".format(self.total_amt),"AUD.")
 
@@ -120,7 +128,7 @@ class Pizzeria:
 
     if user_input.startswith("y") or user_input.startswith("Y"):
       print("Okay..., Give Detials...!")
-      customer.c_bill()
+      client.c_bill()
     else:
       print("\n----------- Pizza and pasta Bill --------------")
       print("payment received from pizza :","{:.2f}".format(self.pizza_amount),"AUD.")
@@ -134,9 +142,8 @@ class Pizzeria:
 
 
 
-customer=Pizzeria()
-
-def option():
+client=Pizzeria()
+def start():
   print("\nPress 1 for Order Menu\nPress 2 for Exit")
   opt=int(input("\nChoose Option from above:- "))
 
@@ -144,7 +151,7 @@ def option():
         #if user opted 1 menu is Showing
         Pizzeria.menu()
         #Calling billing function after showing menu
-        customer.c_bill()
+        client.c_bill()
 
   elif opt==2:
     pass
@@ -152,4 +159,4 @@ def option():
     print("\ninvalid input...!")
     
 
-option()
+start()
